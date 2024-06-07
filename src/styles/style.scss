@@ -3,3 +3,7 @@
 @use './default/icons';
 @use './default/variables';
 @use './main/main';
+
+* {
+    box-sizing: border-box
+}

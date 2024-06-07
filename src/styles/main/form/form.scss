@@ -1,0 +1,83 @@
+.form {
+    &-item {
+        border-radius: 4px;
+        padding: 24px;
+        box-shadow: 0 16px 3rem rgba(0, 0, 0, 0.175) !important;
+        border: 1px solid #dee2e6 !important;
+    }
+    &-name {
+        &__title {
+            font-size: 24px;
+            font-weight: normal;
+            margin: 0;
+        }
+        &__input {
+            margin: 0;
+            padding: 0;
+            margin-top: 8px;
+            border: none;
+            display: block;
+            width: 100%;
+            padding: 6px 12px;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+    }
+    &-skills {
+        margin-top: 16px;
+        &__title {
+            font-size: 24px;
+            font-weight: normal;
+            margin: 0;
+        }
+        &__textarea {
+            display: block;
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            resize: vertical;
+            height: 130px;
+            margin-top: 8px;
+            transition: all 365ms ease 0s;
+        }
+    }
+    &-element {
+        margin-top: 16px;
+        &__title {
+            font-size: 16px;
+            font-weight: normal;
+            margin: 0;
+        }
+        &__select {
+            margin-top: 8px;
+            display: block;
+            width: 100%;
+            padding: 6px 36px 6px 12px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #212529;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+    }
+    &__button {
+        margin-top: 16px;
+        color: white;
+        cursor: pointer;
+        border: none;
+        padding: 8px 12px;
+        font-size: 16px;
+        border-radius: 4px;
+        background-color: #0D6EFD;
+    }
+}

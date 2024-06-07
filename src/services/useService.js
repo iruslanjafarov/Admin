@@ -9,7 +9,16 @@ const useService = () => {
         return heroes
     }
 
-    return { getAllHeroes }
+    const getAllFilters = () => {
+        const filters = request('https://calm-torch-quality.glitch.me/filters')
+        
+        return filters
+    }
+
+    return { 
+        getAllHeroes,
+        getAllFilters
+    }
 }
 
 export default useService

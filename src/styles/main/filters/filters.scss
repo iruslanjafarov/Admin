@@ -1,0 +1,15 @@
+.filters {
+    &-container {
+        margin-top: 24px;
+        padding: 16px;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 4px;
+        text-align: center;
+    }
+    &__title {
+        margin: 0;
+        font-weight: normal;
+        font-size: 16px;
+    }
+}

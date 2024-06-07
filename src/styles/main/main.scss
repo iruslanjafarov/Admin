@@ -1,12 +1,16 @@
 @use './heroes/heroes';
 @use './hero/hero';
+@use './search/search';
+@use './form/form';
+@use './filters/filters';
+@use './filter/filter';
 
 main {
     width: 100%;
-    height: 100%;
     margin-top: 50px;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 40px;
     position: fixed;
 }

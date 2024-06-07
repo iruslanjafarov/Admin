@@ -18,7 +18,11 @@ const Heroes = () => {
     }
 
     const renderHeroes = (array) => {
-        const heroes = array.map(({ id, name, description, element }) => {
+        const heroes = array.map(({ id, name, description, element }, i) => {
+            if (i == 0) {
+                return <Hero key={id} name={name} description={description} element={element} firstElement={true}/>
+            }
+            
             return <Hero key={id} name={name} description={description} element={element}/>
         })
 
