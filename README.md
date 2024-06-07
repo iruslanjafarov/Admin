@@ -3,7 +3,6 @@
 
 - SPA
 - Global Store
-- Perfomance
 
 
 ## Installation
