@@ -1,20 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { filtersFetched } from '../../actions/actions'
 
 import useService from '../../services/useService'
 
-import HeroesFilter from '../HeroesFilter/HeroesFilter';
+import HeroesFilter from '../HeroesFilter/HeroesFilter'
 
 const HeroesFilters = () => {
-    const [filters, setFilters] = useState([]);
+    const filters = useSelector(state => state.filters)
+    
+    const dispatch = useDispatch()
 
     const { getAllFilters } = useService()
 
     useEffect(() => {
-        filtersLoaded()
+        filtersLoading()
     }, [])
 
-    const filtersLoaded = () => {
-        getAllFilters().then(filter => setFilters(filter))
+    const filtersLoading = () => {
+        getAllFilters()
+        .then(filter => dispatch(filtersFetched(filter)))
     }
 
     const fitlersRender = (array) => {

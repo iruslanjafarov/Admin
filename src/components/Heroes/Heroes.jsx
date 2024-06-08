@@ -1,20 +1,29 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { heroesFetching, heroesFetched, heroesFetchingError } from '../../actions/actions'
 
 import useService from '../../services/useService'
 
 import Hero from '../Hero/Hero'
 
 const Heroes = () => {
-    const [heroes, setHeroes] = useState([])
+    const heroes = useSelector(state => state.heroes)
+    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus)
+
+    const dispatch = useDispatch()
 
     const { getAllHeroes } = useService()
 
     useEffect(() => {
-        heroesLoaded()
+        dispatch(heroesFetching())
+        heroesLoading()
     }, [])
 
-    const heroesLoaded = () => {
-        getAllHeroes().then(hero => setHeroes(hero))
+    const heroesLoading = () => {
+        getAllHeroes()
+        .then(hero => dispatch(heroesFetched(hero)))
+        .catch(() => dispatch(heroesFetchingError()))
     }
 
     const renderHeroes = (array) => {
@@ -29,7 +38,7 @@ const Heroes = () => {
         return heroes
     }
 
-    const items = renderHeroes(heroes);
+    const items = renderHeroes(heroes)
 
     return (
         <section className='heroes'>
