@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 filters: action.payload,
             }
-        default: 
+        default:
             return state
     }
 }
