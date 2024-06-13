@@ -7,6 +7,8 @@ import useService from '../../services/useService'
 
 import Hero from '../Hero/Hero'
 
+import Spinner from '../Spinner/Spinner'
+
 const Heroes = () => {
     const heroes = useSelector(state => state.heroes)
     const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus)
@@ -36,6 +38,12 @@ const Heroes = () => {
         })
 
         return heroes
+    }
+
+    if (heroesLoadingStatus === 'loading') {
+        return <Spinner/>
+    } else if (heroes === 'error') {
+        console.log('error')
     }
 
     const items = renderHeroes(heroes)

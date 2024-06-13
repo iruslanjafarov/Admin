@@ -1,22 +1,13 @@
-export const heroesFetching = () => { 
-    return {
-        type: 'HEROES_FETCHING'
-    }
-}
+export const heroesFetching = () => ({ type: 'HEROES_FETCHING' })
+export const heroesFetchingError = () => ({ type: 'HEROES_FETCHING_ERROR' })
+export const filtersFetching = () => ({ type: 'FILTERS_FETCHING' })
 
 export const heroesFetched = (heroes) => { 
     return {
-        type: 'HEROES_FETCHED', 
+        type: 'HEROES_FETCHED',
         payload: heroes
     }
 }
-
-export const heroesFetchingError = () => { 
-    return {
-        type: 'HEROES_FETCHING_ERROR'
-    }
-}
-
 
 export const filtersFetched = (filters) => { 
     return {

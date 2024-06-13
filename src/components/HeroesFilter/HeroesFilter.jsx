@@ -1,8 +1,8 @@
 const HeroesFilter = ({ element }) => {
-    let label = '';
-    let color = '';
-    let borderLeftRadius = '';
-    let borderRightRadius = '';
+    let label = ''
+    let color = ''
+    let borderLeftRadius = ''
+    let borderRightRadius = ''
     
     switch (element) {
         case 'fire':

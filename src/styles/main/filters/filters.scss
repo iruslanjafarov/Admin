@@ -12,4 +12,25 @@
         font-weight: normal;
         font-size: 16px;
     }
+    &-skeleton {
+        height: 35px;
+        margin-top: 15px;
+        border-radius: 4px;
+        width: 90%;
+        background-color: #c4c4c4;
+        text-align: center;
+        display: inline-block;
+        animation: pulse 1.5s ease-in-out 0.5s infinite;
+    }
+    @keyframes pulse {
+        0% {
+            opacity: 1
+        }
+        50% {
+            opacity: .4
+        }
+        100% {
+            opacity: 1
+        }
+    }
 }

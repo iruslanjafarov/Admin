@@ -1,0 +1,19 @@
+.spinner {
+    position: relative;
+    &__circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border-top: 4px solid #212529;
+        border-right: 4px solid transparent;
+        animation: circle 1s linear infinite;
+    }
+}
+@keyframes circle {
+    to {
+        transform: rotate(360deg);
+    }
+}

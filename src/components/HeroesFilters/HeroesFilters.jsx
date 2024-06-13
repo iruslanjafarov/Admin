@@ -1,20 +1,24 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { filtersFetched } from '../../actions/actions'
+import { filtersFetching, filtersFetched } from '../../actions/actions'
 
 import useService from '../../services/useService'
 
 import HeroesFilter from '../HeroesFilter/HeroesFilter'
 
+import HeroesFiltersSkeleton from '../HeroesFiltersSkeleton/HeroesFiltersSkeleton'
+
 const HeroesFilters = () => {
     const filters = useSelector(state => state.filters)
+    const filtersLoadingStatus = useSelector(state => state.filtersLoadingStatus)
     
     const dispatch = useDispatch()
 
     const { getAllFilters } = useService()
 
     useEffect(() => {
+        dispatch(filtersFetching())
         filtersLoading()
     }, [])
 
@@ -37,7 +41,7 @@ const HeroesFilters = () => {
         <section className='filters'>
             <div className='filters-container'>
                 <h3 className='filters__title'>Отфильтруйте героев по элементам</h3>
-                {items}
+                {filtersLoadingStatus === 'loading' ? <HeroesFiltersSkeleton/> : items}
             </div>
         </section>
     )
