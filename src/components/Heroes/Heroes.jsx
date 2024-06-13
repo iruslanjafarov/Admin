@@ -29,15 +29,13 @@ const Heroes = () => {
     }
 
     const renderHeroes = (array) => {
-        const heroes = array.map(({ id, name, description, element }, i) => {
-            if (i == 0) {
-                return <Hero key={id} name={name} description={description} element={element} firstElement={true}/>
-            }
-            
+        if (array.length === 0) {
+            return <h5>Нет персонажей!</h5>
+        }
+
+        return array.map(({ id, name, description, element }) => {
             return <Hero key={id} name={name} description={description} element={element}/>
         })
-
-        return heroes
     }
 
     if (heroesLoadingStatus === 'loading') {

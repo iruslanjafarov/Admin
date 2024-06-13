@@ -1,6 +1,6 @@
 import Close from '../Close/Close';
 
-const Hero = ({ name, description, element, firstElement }) => {
+const Hero = ({ name, description, element }) => {
     let backgroundColor = '';
 
     switch (element) {
@@ -23,7 +23,7 @@ const Hero = ({ name, description, element, firstElement }) => {
     
     return (
         <li className='hero' style={{backgroundColor: backgroundColor}}>
-            <div className='hero-container' style={{marginTop: firstElement ? '0px' : null}}>
+            <div className='hero-container'>
                 <img src='/unknown.jpg' alt='hero' className='hero__image' />
                 <div className='hero-description'>
                     <h3 className='hero-description__name'>{name}</h3>
