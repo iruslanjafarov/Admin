@@ -8,6 +8,7 @@ import useService from '../../services/useService'
 import Hero from '../Hero/Hero'
 
 import Spinner from '../Spinner/Spinner'
+import Error from '../Error/Error'
 
 const Heroes = () => {
     const heroes = useSelector(state => state.heroes)
@@ -30,7 +31,7 @@ const Heroes = () => {
 
     const renderHeroes = (array) => {
         if (array.length === 0) {
-            return <h5>Нет персонажей!</h5>
+            return <h5>Героев пока нет!</h5>
         }
 
         return array.map(({ id, name, description, element }) => {
@@ -38,10 +39,11 @@ const Heroes = () => {
         })
     }
 
-    if (heroesLoadingStatus === 'loading') {
-        return <Spinner/>
-    } else if (heroes === 'error') {
-        console.log('error')
+    switch (heroesLoadingStatus) {
+        case 'loading':
+            return <Spinner/>
+        case 'error':
+            return <Error/>
     }
 
     const items = renderHeroes(heroes)

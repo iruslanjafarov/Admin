@@ -14,7 +14,7 @@ const HeroesForm = () => {
                     <div className='form-element'>
                         <h3 className='form-element__title'>Выбрать элемент героя</h3>
                         <select required name='element' className='form-element__select'>
-                            <option disabled hidden>Я владею элементом...</option>
+                            <option hidden>Я владею элементом...</option>
                             <option value='fire'>Огонь</option>
                             <option value='water'>Вода</option>
                             <option value='wind'>Ветер</option>

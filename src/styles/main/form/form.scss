@@ -46,9 +46,9 @@
             border: 1px solid #ced4da;
             border-radius: 4px;
             resize: vertical;
-            height: 130px;
+            min-height: 130px;
+            max-height: 800px;
             margin-top: 8px;
-            transition: all 365ms ease 0s;
         }
     }
     &-element {
