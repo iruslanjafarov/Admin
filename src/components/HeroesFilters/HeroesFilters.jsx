@@ -34,7 +34,7 @@ const HeroesFilters = () => {
 
         return filters;
     }
-
+    
     const items = fitlersRender(filters)
     
     return (
