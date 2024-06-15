@@ -10,11 +10,6 @@ import {
     heroesFetchingError
 } from '../../actions/actions'
 
-import { 
-    CSSTransition, 
-    TransitionGroup
-} from 'react-transition-group'
-
 import useService from '../../services/useService'
 
 import Hero from '../Hero/Hero'
@@ -23,8 +18,8 @@ import Spinner from '../Spinner/Spinner'
 import Error from '../Error/Error'
 
 const Heroes = () => {
-    const heroes = useSelector(state => state.heroes)
-    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus)
+    const heroes = useSelector(state => state.hero.heroes)
+    const heroesLoadingStatus = useSelector(state => state.hero.heroesLoadingStatus)
 
     const dispatch = useDispatch()
 
@@ -42,15 +37,13 @@ const Heroes = () => {
     }
 
     const renderHeroes = (array) => {
-        //if (array.length === 0) {
-        //    return <h5>Героев пока нет!</h5> //TODO: Исправить проблему с React-Transition-Group и лишним элементом
-        //}
+        if (array.length === 0) {
+            return <h5>Героев пока нет!</h5>
+        }
 
         return array.map(({ id, name, description, element }) => {
             return (
-                <CSSTransition key={id} timeout={500} classNames='hero'>
-                    <Hero name={name} description={description} element={element}/>
-                </CSSTransition>
+                <Hero key={id} name={name} description={description} element={element}/>
             )
         })
     }
@@ -67,9 +60,7 @@ const Heroes = () => {
     return (
         <section className='heroes'>
             <ul>
-                <TransitionGroup component={null}>
-                    {items}
-                </TransitionGroup>
+                {items}
             </ul>
         </section>
     )

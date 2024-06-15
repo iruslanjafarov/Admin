@@ -1,12 +1,18 @@
-import Heroes from '../Heroes/Heroes';
-import HeroesSearch from '../HeroesSearch/HeroesSearch';
+import { Provider } from 'react-redux'
+
+import store from '../../store/store'
+
+import Heroes from '../Heroes/Heroes'
+import HeroesSearch from '../HeroesSearch/HeroesSearch'
 
 const App = () => {
     return (
-        <main>
-            <Heroes/>
-            <HeroesSearch/>
-        </main>
+        <Provider store={store}>
+            <main>
+                <Heroes/>
+                <HeroesSearch/>
+            </main>
+        </Provider>
     )
 }
 

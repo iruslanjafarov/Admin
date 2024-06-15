@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 const HeroesFormSelect = () => {
-    const filters = useSelector(state => state.filters)
+    const filters = useSelector(state => state.filter.filters)
 
     const fitlersRender = (array) => {
         return array.map((filter, i) => {
