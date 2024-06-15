@@ -1,7 +1,19 @@
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import {
+    useSelector,
+    useDispatch
+} from 'react-redux'
 
-import { heroesFetching, heroesFetched, heroesFetchingError } from '../../actions/actions'
+import { 
+    heroesFetching,
+    heroesFetched,
+    heroesFetchingError
+} from '../../actions/actions'
+
+import { 
+    CSSTransition, 
+    TransitionGroup
+} from 'react-transition-group'
 
 import useService from '../../services/useService'
 
@@ -30,12 +42,16 @@ const Heroes = () => {
     }
 
     const renderHeroes = (array) => {
-        if (array.length === 0) {
-            return <h5>Героев пока нет!</h5>
-        }
+        //if (array.length === 0) {
+        //    return <h5>Героев пока нет!</h5> //TODO: Исправить проблему с React-Transition-Group и лишним элементом
+        //}
 
         return array.map(({ id, name, description, element }) => {
-            return <Hero key={id} name={name} description={description} element={element}/>
+            return (
+                <CSSTransition key={id} timeout={500} classNames='hero'>
+                    <Hero name={name} description={description} element={element}/>
+                </CSSTransition>
+            )
         })
     }
 
@@ -51,7 +67,9 @@ const Heroes = () => {
     return (
         <section className='heroes'>
             <ul>
-                {items}
+                <TransitionGroup component={null}>
+                    {items}
+                </TransitionGroup>
             </ul>
         </section>
     )

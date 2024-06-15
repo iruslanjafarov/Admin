@@ -22,7 +22,7 @@ const Hero = ({ name, description, element }) => {
     }
     
     return (
-        <li className='hero' style={{backgroundColor: backgroundColor}}>
+        <li className='hero' style={{backgroundColor}}>
             <div className='hero-container'>
                 <img src='/unknown.jpg' alt='hero' className='hero__image' />
                 <div className='hero-description'>

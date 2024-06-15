@@ -1,7 +1,13 @@
 import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { 
+    useSelector, 
+    useDispatch 
+} from 'react-redux'
 
-import { filtersFetching, filtersFetched } from '../../actions/actions'
+import { 
+    filtersFetching, 
+    filtersFetched 
+} from '../../actions/actions'
 
 import useService from '../../services/useService'
 
@@ -32,7 +38,7 @@ const HeroesFilters = () => {
             return <HeroesFilter key={i} element={element}/>
         })
 
-        return filters;
+        return filters
     }
     
     const items = fitlersRender(filters)
