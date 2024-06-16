@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 import {
     useSelector,
     useDispatch
@@ -38,14 +39,20 @@ const Heroes = () => {
 
     const renderHeroes = (array) => {
         if (array.length === 0) {
-            return <h5>Героев пока нет!</h5>
+            return <div className='hero__empty'>Героев пока нет</div>
         }
 
-        return array.map(({ id, name, description, element }) => {
+        const items = array.map(({ id, name, description, element }) => {
             return (
-                <Hero key={id} name={name} description={description} element={element}/>
+                <Hero key={id} id={id} name={name} description={description} element={element}/> //TODO: Разобраться с uuid
             )
         })
+
+        return (
+            <ul>
+                {items}
+            </ul>
+        )
     }
 
     switch (heroesLoadingStatus) {
@@ -59,9 +66,7 @@ const Heroes = () => {
 
     return (
         <section className='heroes'>
-            <ul>
-                {items}
-            </ul>
+            {items}
         </section>
     )
 }

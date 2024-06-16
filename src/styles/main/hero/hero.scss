@@ -40,8 +40,12 @@
         border: 1px solid #dee2e6;
         cursor: pointer;
         color: gray;
+        user-select: none;
         &:hover {
             color: black;
         }
+    }
+    &__empty {
+        text-align: center;
     }
 }

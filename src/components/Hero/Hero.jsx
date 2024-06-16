@@ -1,6 +1,21 @@
-import Close from '../Close/Close';
+import { 
+    useDispatch, 
+    useSelector 
+} from 'react-redux'
 
-const Hero = ({ name, description, element }) => {
+import { heroesFetched } from '../../actions/actions'
+
+import useService from '../../services/useService'
+
+import Close from '../Close/Close'
+
+const Hero = ({ id, name, description, element }) => {
+    const heroes = useSelector(state => state.hero.heroes)
+
+    const dispatch = useDispatch()
+
+    const { deleteHeroes } = useService()
+
     let backgroundColor = '';
 
     switch (element) {
@@ -21,6 +36,14 @@ const Hero = ({ name, description, element }) => {
             break
     }
     
+    const onHeroDelete = (id) => {
+        console.log(id)
+
+        dispatch(heroesFetched(heroes.filter(hero => hero.id !== id)))
+
+        //deleteHeroes(id)
+    }
+
     return (
         <li className='hero' style={{backgroundColor}}>
             <div className='hero-container'>
@@ -29,7 +52,7 @@ const Hero = ({ name, description, element }) => {
                     <h3 className='hero-description__name'>{name}</h3>
                     <p className='hero-description__text'>{description}</p>
                 </div>
-                <Close classes={'hero__close'}/>
+                <Close method={() => onHeroDelete(id)} classes={'hero__close'}/>
             </div>
         </li>
     )
