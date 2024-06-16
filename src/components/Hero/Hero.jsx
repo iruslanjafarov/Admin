@@ -3,18 +3,18 @@ import {
     useSelector 
 } from 'react-redux'
 
-import { heroesFetched } from '../../actions/actions'
+import { heroDeleted } from '../../actions/actions'
 
 import useService from '../../services/useService'
 
 import Close from '../Close/Close'
 
 const Hero = ({ id, name, description, element }) => {
-    const heroes = useSelector(state => state.hero.heroes)
+    const heroes = useSelector(state => state.heroes)
 
     const dispatch = useDispatch()
 
-    const { deleteHeroes } = useService()
+    //const { deleteHeroes } = useService()
 
     let backgroundColor = '';
 
@@ -35,13 +35,9 @@ const Hero = ({ id, name, description, element }) => {
             backgroundColor = '#ffc107'
             break
     }
-    
+
     const onHeroDelete = (id) => {
-        console.log(id)
-
-        dispatch(heroesFetched(heroes.filter(hero => hero.id !== id)))
-
-        //deleteHeroes(id)
+        dispatch(heroDeleted(id))
     }
 
     return (

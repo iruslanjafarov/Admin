@@ -7,37 +7,37 @@ import {
 
 import { useForm } from 'react-hook-form'
 
-import { heroesFetched } from '../../actions/actions'
+import { heroCreate } from '../../actions/actions'
 
 import HeroesFormSelect from '../HeroesFormSelect/HeroesFormSelect'
 
 const HeroesForm = () => {
-    const heroes = useSelector(state => state.hero.heroes)
+    const heroes = useSelector(state => state.heroes)
     const [currentFilter, setCurrentFilter] = useState('')
 
     const dispatch = useDispatch()
 
     const { 
         register,
-        handleSubmit,
+        handleSubmit
     } = useForm()
 
     const getCurrentFilter = (filter) => {
         setCurrentFilter(filter)
     }
 
-    const onSubmit = ({ name, description }) => {
-        const newHero = { id: 4, name, description, element: currentFilter }
+    const onHeroCreate = ({ name, description }) => {
+        const hero = {name: name, description: description, element: currentFilter}
 
-        const newHeroesArray = [...heroes, newHero]
+        console.log(hero)
 
-        dispatch(heroesFetched(newHeroesArray))
+        dispatch(heroCreate(hero))
     }
 
     return (
         <section className='form'>
             <div className='form-container'>
-                <form className='form-item' onSubmit={handleSubmit(onSubmit)}>
+                <form className='form-item' onSubmit={handleSubmit(onHeroCreate)}>
                     <div className='form-name'>
                         <h3 className='form-name__title'>Имя нового героя</h3>
                         <input { ...register('name') } type='text' name='name' placeholder='Как меня зовут?' className='form-name__input' />

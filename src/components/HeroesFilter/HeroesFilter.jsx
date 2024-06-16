@@ -1,4 +1,13 @@
+import { useSelector, useDispatch } from 'react-redux'
+
+import { heroesFetched } from '../../actions/actions'
+
 const HeroesFilter = ({ element }) => {
+    const heroes = useSelector(state => state.heroes)
+    const filters = useSelector(state => state.filters)
+
+    const dispatch = useDispatch()
+
     let label = ''
     let color = ''
     let borderLeftRadius = ''
@@ -37,21 +46,34 @@ const HeroesFilter = ({ element }) => {
             break
     }
 
+    const onFilterActive = (currentFilter) => {
+        //dispatch(heroesFetched(filters.filter(filter => filter !== heroes.element)))
+        
+        //dispatch(heroesFetched(filters.filter(currentFilter === heroes.element)))
+    }
+
     return (
-        <button style=
-        {
-            {
-                backgroundColor: color,
-                borderRadius: '0px',
-                borderTopLeftRadius: borderLeftRadius,
-                borderBottomLeftRadius: borderLeftRadius,
-                borderTopRightRadius: borderRightRadius,
-                borderBottomRightRadius: borderRightRadius
-            }
-        }
-        className='filter__button'
-        >{label}</button>
+        <FilterButton label={label} color={color} borderLeftRadius={borderLeftRadius} borderRightRadius={borderRightRadius} element={element} onFilterActive={onFilterActive}/>
     )
 }
 
 export default HeroesFilter
+
+const FilterButton = ({ label, color, borderLeftRadius, borderRightRadius, element, onFilterActive }) => {
+    return (
+        <button style=
+            {
+                {
+                    backgroundColor: color,
+                    borderRadius: '0px',
+                    borderTopLeftRadius: borderLeftRadius,
+                    borderBottomLeftRadius: borderLeftRadius,
+                    borderTopRightRadius: borderRightRadius,
+                    borderBottomRightRadius: borderRightRadius
+                }
+            }
+        className='filter__button'
+        onClick={() => onFilterActive(element)}
+        >{label}</button>
+    )
+}

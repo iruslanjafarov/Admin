@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import filterReducer from '../reducers/filterReducer'
-import heroReducer from '../reducers/heroReducer'
+import reducer from '../reducers/reducer'
 
-const store = configureStore({ reducer: { hero: heroReducer, filter: filterReducer } })
+const store = configureStore({ reducer })
 
 export default store

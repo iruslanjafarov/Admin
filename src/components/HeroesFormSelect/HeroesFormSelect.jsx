@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 const HeroesFormSelect = ({ getCurrentFilter }) => {
-    const filters = useSelector(state => state.filter.filters)
+    const filters = useSelector(state => state.filters)
     const [currentFilter, setCurrentFilter] = useState('')
 
     const fitlersRender = (array) => {

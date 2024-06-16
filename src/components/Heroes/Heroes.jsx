@@ -19,8 +19,8 @@ import Spinner from '../Spinner/Spinner'
 import Error from '../Error/Error'
 
 const Heroes = () => {
-    const heroes = useSelector(state => state.hero.heroes)
-    const heroesLoadingStatus = useSelector(state => state.hero.heroesLoadingStatus)
+    const heroes = useSelector(state => state.heroes)
+    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus)
 
     const dispatch = useDispatch()
 

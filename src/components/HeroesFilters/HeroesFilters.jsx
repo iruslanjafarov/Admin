@@ -16,8 +16,8 @@ import HeroesFilter from '../HeroesFilter/HeroesFilter'
 import HeroesFiltersSkeleton from '../HeroesFiltersSkeleton/HeroesFiltersSkeleton'
 
 const HeroesFilters = () => {
-    const filters = useSelector(state => state.filter.filters)
-    const filtersLoadingStatus = useSelector(state => state.filter.filtersLoadingStatus)
+    const filters = useSelector(state => state.filters)
+    const filtersLoadingStatus = useSelector(state => state.filtersLoadingStatus)
     
     const dispatch = useDispatch()
 
