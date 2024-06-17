@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback } from 'react'
 
 const useHttp = () => {
     const request = useCallback(async (url, method, body = null, headers = {'Content-Type': 'application/json'}) => {

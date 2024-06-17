@@ -26,8 +26,13 @@
             border: 1px solid #ced4da;
             border-radius: 4px;
         }
+        &__error {
+            margin: 15px 0px;
+            color: red;
+            font-weight: normal;
+        }
     }
-    &-skills {
+    &-description {
         margin-top: 16px;
         &__title {
             font-size: 24px;
@@ -48,6 +53,11 @@
             resize: none;
             min-height: 130px;
             margin-top: 8px;
+        }
+        &__error {
+            margin: 15px 0px;
+            color: red;
+            font-weight: normal;
         }
     }
     &-element {

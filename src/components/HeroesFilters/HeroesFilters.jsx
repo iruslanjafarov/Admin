@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 import { 
     useSelector, 
     useDispatch 
@@ -6,7 +7,8 @@ import {
 
 import { 
     filtersFetching, 
-    filtersFetched 
+    filtersFetched,
+    filtersFetchingError
 } from '../../actions/actions'
 
 import useService from '../../services/useService'
@@ -25,17 +27,23 @@ const HeroesFilters = () => {
 
     useEffect(() => {
         dispatch(filtersFetching())
-        filtersLoading()
+        filtersLoaded()
     }, [])
 
-    const filtersLoading = () => {
+    const filtersLoaded = () => {
         getAllFilters()
         .then(filter => dispatch(filtersFetched(filter)))
+        .catch(dispatch(filtersFetchingError))
     }
 
     const fitlersRender = (array) => {
-        const filters = array.map((element, i) => {
-            return <HeroesFilter key={i} element={element}/>
+        const filters = array.map(({ label, element, color }, i) => {
+            return <HeroesFilter
+            key={i}
+            label={label}
+            element={element}
+            color={color}
+            />
         })
 
         return filters

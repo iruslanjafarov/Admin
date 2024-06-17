@@ -7,12 +7,15 @@ const useService = () => {
 
     const getAllFilters = () => request('https://calm-torch-quality.glitch.me/filters')
 
-    const deleteHeroes = (id) => request(`https://calm-torch-quality.glitch.me/heroes/${id}`, 'DELETE')
+    const deleteHero = (id) => request(`https://calm-torch-quality.glitch.me/heroes/${id}`, 'DELETE')
+
+    const createHero = (hero) => request('https://calm-torch-quality.glitch.me/heroes', 'POST', hero)
 
     return { 
         getAllHeroes,
         getAllFilters,
-        deleteHeroes
+        deleteHero,
+        createHero
     }
 }
 

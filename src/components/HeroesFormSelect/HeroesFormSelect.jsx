@@ -1,48 +1,35 @@
-import { useState } from 'react'
-
 import { useSelector } from 'react-redux'
 
-const HeroesFormSelect = ({ getCurrentFilter }) => {
+const HeroesFormSelect = ({ getCurrentOption }) => {
     const filters = useSelector(state => state.filters)
-    const [currentFilter, setCurrentFilter] = useState('')
 
     const fitlersRender = (array) => {
-        return array.map((filter, i) => {
-            let label = null
-
-            switch (filter) {
-                case 'fire':
-                    label = 'Огонь'
-                    break
-                case 'water':
-                    label = 'Вода'
-                    break
-                case 'wind':
-                    label = 'Воздух'
-                    break
-                case 'earth':
-                    label = 'Земля'
-                    break
-                default:
-                    return
+        return array.map(({ label }, i) => {
+            if (label === 'Все') {
+                return
             }
-
-            return <option key={i} value={filter}>{label}</option>
+            
+            return <option
+            key={i}
+            value={label}
+            >{label}</option>
         })
     }
 
     const items = fitlersRender(filters)
 
-    const onSelectChange = (e) => {
-        const value = e.target.value
+    const provideCurrentOption = (e) => {
+        const target = e.target.value
 
-        setCurrentFilter(value)
-
-        getCurrentFilter(value)
+        getCurrentOption(target)
     }
 
     return (
-        <select value={currentFilter} onChange={(e) => onSelectChange(e)} required name='element' className='form-element__select'>
+        <select 
+        required
+        onChange={(e) => provideCurrentOption(e)}
+        name='element'
+        className='form-element__select'>
             <option hidden>Я владею элементом...</option>
             {items}
         </select>

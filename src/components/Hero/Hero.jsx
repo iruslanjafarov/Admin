@@ -14,7 +14,7 @@ const Hero = ({ id, name, description, element }) => {
 
     const dispatch = useDispatch()
 
-    //const { deleteHeroes } = useService()
+    const { deleteHero } = useService()
 
     let backgroundColor = '';
 
@@ -38,6 +38,8 @@ const Hero = ({ id, name, description, element }) => {
 
     const onHeroDelete = (id) => {
         dispatch(heroDeleted(id))
+
+        deleteHero(id)
     }
 
     return (

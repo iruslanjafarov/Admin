@@ -1,38 +1,63 @@
 import { useState } from 'react'
 
-import { 
-    useSelector, 
-    useDispatch 
-} from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { useForm } from 'react-hook-form'
 
+import useService from '../../services/useService'
+
 import { heroCreate } from '../../actions/actions'
+
+import { v4 as uuid } from 'uuid'
 
 import HeroesFormSelect from '../HeroesFormSelect/HeroesFormSelect'
 
 const HeroesForm = () => {
-    const heroes = useSelector(state => state.heroes)
-    const [currentFilter, setCurrentFilter] = useState('')
+    const [currentOption, setCurrentOption] = useState('')
+
+    const { createHero } = useService()
+
+    switch (currentOption) {
+        case 'Огонь':
+            setCurrentOption('fire')
+            break
+        case 'Вода':
+            setCurrentOption('water')
+            break
+        case 'Воздух':
+            setCurrentOption('wind')
+            break
+        case 'Земля':
+            setCurrentOption('earth')
+            break
+        default:
+            break
+    }
+
+    const getCurrentOption = (option) => {
+        setCurrentOption(option)
+    }
 
     const dispatch = useDispatch()
 
     const { 
         register,
-        handleSubmit
+        handleSubmit,
+        reset,
+        formState: { errors }
     } = useForm()
 
-    const getCurrentFilter = (filter) => {
-        setCurrentFilter(filter)
-    }
-
     const onHeroCreate = ({ name, description }) => {
-        const hero = {name: name, description: description, element: currentFilter}
-
-        console.log(hero)
+        const hero = {id: uuid(), name: name, description: description, element: currentOption}
 
         dispatch(heroCreate(hero))
+
+        createHero(JSON.stringify(hero))
+
+        reset()
     }
+
+    console.log(errors)
 
     return (
         <section className='form'>
@@ -40,15 +65,28 @@ const HeroesForm = () => {
                 <form className='form-item' onSubmit={handleSubmit(onHeroCreate)}>
                     <div className='form-name'>
                         <h3 className='form-name__title'>Имя нового героя</h3>
-                        <input { ...register('name') } type='text' name='name' placeholder='Как меня зовут?' className='form-name__input' />
+                        <input
+                        { ...register('name', { required: 'Необходимо заполнить имя персонажа' }) }
+                        type='text'
+                        name='name'
+                        placeholder='Как меня зовут?'
+                        className='form-name__input'
+                        />
+                        <h4 className='form-name__error'>{errors.name?.message}</h4>
                     </div>
-                    <div className='form-skills'>
-                        <h3 className='form-skills__title'>Описание</h3>
-                        <textarea { ...register('description') } type='text' name='description' placeholder='Что я умею?' className='form-skills__textarea' />
+                    <div className='form-description'>
+                        <h3 className='form-description__title'>Описание</h3>
+                        <textarea
+                        { ...register('description', { required: 'Необходимо заполнить информацию о персонаже' }) }
+                        type='text'
+                        name='description'
+                        placeholder='Что я умею?' className='form-description__textarea'
+                        />
+                        <h4 className='form-description__error'>{errors.description?.message}</h4>
                     </div>
                     <div className='form-element'>
                         <h3 className='form-element__title'>Выбрать элемент героя</h3>
-                        <HeroesFormSelect getCurrentFilter={getCurrentFilter}/>
+                        <HeroesFormSelect getCurrentOption={getCurrentOption}/>
                     </div>
                     <button className='form__button'>Создать</button>
                 </form>

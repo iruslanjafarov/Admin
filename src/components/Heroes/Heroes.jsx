@@ -44,7 +44,13 @@ const Heroes = () => {
 
         const items = array.map(({ id, name, description, element }) => {
             return (
-                <Hero key={id} id={id} name={name} description={description} element={element}/> //TODO: Разобраться с uuid
+                <Hero
+                key={id}
+                id={id}
+                name={name}
+                description={description}
+                element={element}
+                />
             )
         })
 
