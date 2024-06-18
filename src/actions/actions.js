@@ -30,3 +30,10 @@ export const filtersFetched = (filters) => {
         payload: filters
     }
 }
+
+export const filterActive = (filter) => {
+    return {
+        type: 'FILTER_ACTIVE',
+        payload: filter
+    }
+}

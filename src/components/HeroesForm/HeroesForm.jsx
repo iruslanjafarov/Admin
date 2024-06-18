@@ -57,8 +57,6 @@ const HeroesForm = () => {
         reset()
     }
 
-    console.log(errors)
-
     return (
         <section className='form'>
             <div className='form-container'>

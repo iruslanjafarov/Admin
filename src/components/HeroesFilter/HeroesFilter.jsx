@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+
+import { filterActive } from '../../actions/actions'
+
 const HeroesFilter = ({ label, element, color }) => {
     let borderLeftRadius = ''
     let borderRightRadius = ''
@@ -29,6 +33,7 @@ const HeroesFilter = ({ label, element, color }) => {
         <FilterButton
         label={label}
         color={color}
+        element={element}
         borderLeftRadius={borderLeftRadius}
         borderRightRadius={borderRightRadius}
         />
@@ -37,7 +42,9 @@ const HeroesFilter = ({ label, element, color }) => {
 
 export default HeroesFilter
 
-const FilterButton = ({ label, color, borderLeftRadius, borderRightRadius }) => {
+const FilterButton = ({ label, color, element, borderLeftRadius, borderRightRadius }) => {
+    const dispatch = useDispatch()
+    
     return (
         <button style=
             {
@@ -51,6 +58,7 @@ const FilterButton = ({ label, color, borderLeftRadius, borderRightRadius }) => 
                 }
             }
         className='filter__button'
+        onClick={() => dispatch(filterActive(element))}
         >{label}</button>
     )
 }
