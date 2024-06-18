@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 const HeroesFormSelect = ({ getCurrentOption }) => {
-    const filters = useSelector(state => state.filters)
+    const filters = useSelector(state => state.filters.filters)
 
     const fitlersRender = (array) => {
         return array.map(({ label }, i) => {
@@ -12,6 +12,7 @@ const HeroesFormSelect = ({ getCurrentOption }) => {
             return <option
             key={i}
             value={label}
+            tabIndex={0}
             >{label}</option>
         })
     }

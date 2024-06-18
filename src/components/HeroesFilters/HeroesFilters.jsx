@@ -9,7 +9,7 @@ import {
     filtersFetching, 
     filtersFetched,
     filtersFetchingError
-} from '../../actions/actions'
+} from '../../actions/filters'
 
 import useService from '../../services/useService'
 
@@ -18,8 +18,8 @@ import HeroesFilter from '../HeroesFilter/HeroesFilter'
 import HeroesFiltersSkeleton from '../HeroesFiltersSkeleton/HeroesFiltersSkeleton'
 
 const HeroesFilters = () => {
-    const filters = useSelector(state => state.filters)
-    const filtersLoadingStatus = useSelector(state => state.filtersLoadingStatus)
+    const filters = useSelector(state => state.filters.filters)
+    const filtersLoadingStatus = useSelector(state => state.filters.filtersLoadingStatus)
     
     const dispatch = useDispatch()
 

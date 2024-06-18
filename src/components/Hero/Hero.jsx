@@ -3,20 +3,22 @@ import {
     useSelector 
 } from 'react-redux'
 
-import { heroDeleted } from '../../actions/actions'
+import { heroDeleted } from '../../actions/heroes'
 
 import useService from '../../services/useService'
 
 import Close from '../Close/Close'
 
 const Hero = ({ id, name, description, element }) => {
-    const heroes = useSelector(state => state.heroes)
+    const getDeletedHero = useSelector(state => {
+        //const deletedHero = state.heroes.filter(hero => hero.id !==)
+    })
 
     const dispatch = useDispatch()
 
     const { deleteHero } = useService()
 
-    let backgroundColor = '';
+    let backgroundColor = ''
 
     switch (element) {
         case 'fire':

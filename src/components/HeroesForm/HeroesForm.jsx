@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 
 import useService from '../../services/useService'
 
-import { heroCreate } from '../../actions/actions'
+import { heroCreate } from '../../actions/heroes'
 
 import { v4 as uuid } from 'uuid'
 

@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 
-import { filterActive } from '../../actions/actions'
+import { filterActive } from '../../actions/filters'
 
 const HeroesFilter = ({ label, element, color }) => {
     let borderLeftRadius = ''

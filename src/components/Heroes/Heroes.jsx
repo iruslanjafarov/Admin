@@ -1,26 +1,40 @@
 import { useEffect } from 'react'
 
-import {
-    useSelector,
-    useDispatch
+import { createSelector } from 'reselect'
+
+import { 
+    useSelector, 
+    useDispatch 
 } from 'react-redux'
 
 import { 
     heroesFetching,
     heroesFetched,
     heroesFetchingError
-} from '../../actions/actions'
+} from '../../actions/heroes'
 
 import useService from '../../services/useService'
-
+    
 import Hero from '../Hero/Hero'
 
 import Spinner from '../Spinner/Spinner'
 import Error from '../Error/Error'
 
 const Heroes = () => {
-    const heroes = useSelector(state => state.filteredHeroes)
-    const heroesLoadingStatus = useSelector(state => state.heroesLoadingStatus)
+    const filteredHeroesSelector = createSelector(
+        [(state) => state.filters.filterActive, (state) => state.heroes.heroes],
+        (filterActive, heroes) => {
+            if (filterActive === 'all') {
+                return heroes
+            }
+    
+            return heroes.filter(hero => hero.element === filterActive)
+        }
+    )
+
+    const filteredHeroes = useSelector(filteredHeroesSelector)
+
+    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus)
 
     const dispatch = useDispatch()
 
@@ -68,7 +82,7 @@ const Heroes = () => {
             return <Error/>
     }
 
-    const items = renderHeroes(heroes)
+    const items = renderHeroes(filteredHeroes)
 
     return (
         <section className='heroes'>
