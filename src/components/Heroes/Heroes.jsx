@@ -22,13 +22,13 @@ import Error from '../Error/Error'
 
 const Heroes = () => {
     const filteredHeroesSelector = createSelector(
-        [(state) => state.filters.filterActive, (state) => state.heroes.heroes],
-        (filterActive, heroes) => {
-            if (filterActive === 'all') {
+        [(state) => state.heroes.heroes, (state) => state.filters.filterActive],
+        (heroes, activeFilter) => {
+            if (activeFilter === 'all') {
                 return heroes
             }
-    
-            return heroes.filter(hero => hero.element === filterActive)
+
+            return heroes.filter(hero => hero.element === activeFilter)
         }
     )
 
