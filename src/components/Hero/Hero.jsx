@@ -1,7 +1,4 @@
-import { 
-    useDispatch, 
-    useSelector 
-} from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { heroDeleted } from '../../actions/heroes'
 
@@ -10,10 +7,6 @@ import useService from '../../services/useService'
 import Close from '../Close/Close'
 
 const Hero = ({ id, name, description, element }) => {
-    const getDeletedHero = useSelector(state => {
-        //const deletedHero = state.heroes.filter(hero => hero.id !==)
-    })
-
     const dispatch = useDispatch()
 
     const { deleteHero } = useService()

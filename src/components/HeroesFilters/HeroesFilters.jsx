@@ -26,7 +26,7 @@ const HeroesFilters = () => {
     const { getAllFilters } = useService()
 
     useEffect(() => {
-        dispatch(filtersFetching)
+        dispatch(filtersFetching())
         filtersLoaded()
     }, [])
 
