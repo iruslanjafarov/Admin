@@ -41,14 +41,14 @@ const Heroes = () => {
     const { getAllHeroes } = useService()
 
     useEffect(() => {
-        dispatch(heroesFetching())
+        dispatch(heroesFetching)
         heroesLoading()
     }, [])
 
     const heroesLoading = () => {
         getAllHeroes()
         .then(hero => dispatch(heroesFetched(hero)))
-        .catch(() => dispatch(heroesFetchingError()))
+        .catch(() => dispatch(heroesFetchingError))
     }
 
     const renderHeroes = (array) => {
