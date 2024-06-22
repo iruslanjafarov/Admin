@@ -33,7 +33,7 @@ const HeroesFilters = () => {
     const filtersLoaded = () => {
         getAllFilters()
         .then(filter => dispatch(filtersFetched(filter)))
-        .catch(dispatch(filtersFetchingError))
+        .catch(error => dispatch(filtersFetchingError()))
     }
 
     const fitlersRender = (array) => {
