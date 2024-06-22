@@ -2,13 +2,13 @@ import { useState } from 'react'
 
 import { useDispatch } from 'react-redux'
 
+import { nanoid } from '@reduxjs/toolkit'
+
 import { useForm } from 'react-hook-form'
 
 import useService from '../../services/useService'
 
 import { heroCreate } from '../../actions/heroes'
-
-import { v4 as uuid } from 'uuid'
 
 import HeroesFormSelect from '../HeroesFormSelect/HeroesFormSelect'
 
@@ -48,7 +48,7 @@ const HeroesForm = () => {
     } = useForm()
 
     const onHeroCreate = ({ name, description }) => {
-        const hero = {id: uuid(), name: name, description: description, element: currentOption}
+        const hero = {id: nanoid(), name: name, description: description, element: currentOption}
 
         dispatch(heroCreate(hero))
 
