@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { createSelector } from 'reselect'
+import { createSelector } from '@reduxjs/toolkit'
 
 import { 
     useSelector, 
