@@ -10,10 +10,11 @@ const HeroesFormSelect = ({ getCurrentOption }) => {
             }
             
             return <option
-            key={i}
-            value={label}
-            tabIndex={0}
-            >{label}</option>
+                key={i}
+                value={label}
+                tabIndex={0}
+                >{label}
+            </option>
         })
     }
 

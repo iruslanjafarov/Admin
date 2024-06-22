@@ -32,17 +32,17 @@ const HeroesFilters = () => {
 
     const filtersLoaded = () => {
         getAllFilters()
-        .then(filter => dispatch(filtersFetched(filter)))
-        .catch(error => dispatch(filtersFetchingError()))
+            .then(filter => dispatch(filtersFetched(filter)))
+            .catch(error => dispatch(filtersFetchingError()))
     }
 
     const fitlersRender = (array) => {
         const filters = array.map(({ label, element, color }, i) => {
             return <HeroesFilter
-            key={i}
-            label={label}
-            element={element}
-            color={color}
+                key={i}
+                label={label}
+                element={element}
+                color={color}
             />
         })
 

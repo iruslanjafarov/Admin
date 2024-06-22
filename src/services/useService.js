@@ -10,15 +10,15 @@ const useService = () => {
 
     const getAllFilters = () => request(_apiLinkFilters)
 
-    const deleteHero = (id) => request(`${_apiLinkHeroes}/${id}`, 'DELETE')
-
     const createHero = (hero) => request(_apiLinkHeroes, 'POST', hero)
+
+    const deleteHero = (id) => request(`${_apiLinkHeroes}/${id}`, 'DELETE')
 
     return { 
         getAllHeroes,
         getAllFilters,
-        deleteHero,
-        createHero
+        createHero,
+        deleteHero
     }
 }
 

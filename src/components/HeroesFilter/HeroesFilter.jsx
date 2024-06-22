@@ -31,11 +31,11 @@ const HeroesFilter = ({ label, element, color }) => {
 
     return (
         <FilterButton
-        label={label}
-        color={color}
-        element={element}
-        borderLeftRadius={borderLeftRadius}
-        borderRightRadius={borderRightRadius}
+            label={label}
+            color={color}
+            element={element}
+            borderLeftRadius={borderLeftRadius}
+            borderRightRadius={borderRightRadius}
         />
     )
 }
