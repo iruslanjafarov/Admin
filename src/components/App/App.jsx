@@ -4,8 +4,8 @@ import { ErrorBoundary } from 'react-error-boundary'
 
 import store from '../../store/store'
 
-import Heroes from '../Heroes/Heroes'
-import HeroesSearch from '../HeroesSearch/HeroesSearch'
+import Heroes from '../heroes/heroes'
+import HeroesSearch from '../heroesSearch/heroesSearch'
 
 const App = () => {
     return (

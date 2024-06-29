@@ -3,22 +3,22 @@ import { useEffect } from 'react'
 import { createSelector } from '@reduxjs/toolkit'
 
 import { 
-    useSelector, 
-    useDispatch 
+    useSelector,
+    useDispatch
 } from 'react-redux'
 
 import { 
     heroesFetching,
     heroesFetched,
     heroesFetchingError
-} from '../../actions/heroes'
+} from '../../slices/heroesSlice'
 
 import useService from '../../services/useService'
     
-import Hero from '../Hero/Hero'
+import Hero from '../hero/hero'
 
-import Spinner from '../Spinner/Spinner'
-import Error from '../Error/Error'
+import Spinner from '../spinner/spinner'
+import Error from '../error/error'
 
 const Heroes = () => {
     const filteredHeroesSelector = createSelector(

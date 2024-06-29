@@ -9,13 +9,13 @@ import {
     filtersFetching, 
     filtersFetched,
     filtersFetchingError
-} from '../../actions/filters'
+} from '../../slices/filtersSlice'
 
 import useService from '../../services/useService'
 
-import HeroesFilter from '../HeroesFilter/HeroesFilter'
+import HeroesFilter from '../heroesFilter/heroesFilter'
 
-import HeroesFiltersSkeleton from '../HeroesFiltersSkeleton/HeroesFiltersSkeleton'
+import HeroesFiltersSkeleton from '../heroesFiltersSkeleton/heroesFiltersSkeleton'
 
 const HeroesFilters = () => {
     const filters = useSelector(state => state.filters.filters)

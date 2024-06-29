@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux'
 
-import { heroDeleted } from '../../actions/heroes'
+import { heroDeleted } from '../../slices/heroesSlice'
 
 import useService from '../../services/useService'
 
-import Close from '../Close/Close'
+import Close from '../close/close'
 
 const Hero = ({ id, name, description, element }) => {
     const dispatch = useDispatch()

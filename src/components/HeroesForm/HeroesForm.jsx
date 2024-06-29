@@ -8,9 +8,9 @@ import { useForm } from 'react-hook-form'
 
 import useService from '../../services/useService'
 
-import { heroCreate } from '../../actions/heroes'
+import { heroCreate } from '../../slices/heroesSlice'
 
-import HeroesFormSelect from '../HeroesFormSelect/HeroesFormSelect'
+import HeroesFormSelect from '../heroesFormSelect/heroesFormSelect'
 
 const HeroesForm = () => {
     const [currentOption, setCurrentOption] = useState('')

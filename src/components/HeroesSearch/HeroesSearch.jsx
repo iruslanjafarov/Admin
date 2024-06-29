@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'react-error-boundary'
 
-import HeroesForm from '../HeroesForm/HeroesForm'
-import HeroesFilters from '../HeroesFilters/HeroesFilters'
+import HeroesForm from '../heroesForm/heroesForm'
+import HeroesFilters from '../heroesFilters/heroesFilters'
 
 const HeroesSearch = () => {
     return (
