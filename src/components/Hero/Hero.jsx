@@ -4,6 +4,8 @@ import { heroDeleted } from '../../slices/heroesSlice'
 
 import useService from '../../services/useService'
 
+import heroThumbnail from '../../assets/unknown.jpg'
+
 import Close from '../close/close'
 
 const Hero = ({ id, name, description, element }) => {
@@ -40,7 +42,7 @@ const Hero = ({ id, name, description, element }) => {
     return (
         <li className='hero' style={{backgroundColor}}>
             <div className='hero-container'>
-                <img src='/unknown.jpg' alt='hero' className='hero__image' />
+                <img src={heroThumbnail} alt='hero' className='hero__image' />
                 <div className='hero-description'>
                     <h3 className='hero-description__name'>{name}</h3>
                     <p className='hero-description__text'>{description}</p>

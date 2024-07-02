@@ -1,4 +1,4 @@
-import ErrorGIF from '/error.gif'
+import ErrorGIF from '../../assets/error.gif'
 
 const Error = () => {
     return (
