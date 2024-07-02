@@ -1,7 +1,5 @@
-import { useCallback } from 'react'
-
-const useHttp = () => {
-    const request = useCallback(async (url, method, body = null, headers = {'Content-Type': 'application/json'}) => {
+const http = () => {
+    const request = async (url, method, body = null, headers = {'Content-Type': 'application/json'}) => {
         try {
             const response = await fetch(url, {method, body, headers})
 
@@ -15,9 +13,9 @@ const useHttp = () => {
         } catch (error) {
             throw new Error(error)
         }
-    }, [])
+    }
 
     return { request }
 }
 
-export default useHttp
+export default http

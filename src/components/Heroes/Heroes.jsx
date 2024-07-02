@@ -7,13 +7,7 @@ import {
     useDispatch
 } from 'react-redux'
 
-import { 
-    heroesFetching,
-    heroesFetched,
-    heroesFetchingError
-} from '../../slices/heroesSlice'
-
-import useService from '../../services/useService'
+import { heroesFetch } from '../../slices/heroesSlice'
     
 import Hero from '../hero/hero'
 
@@ -38,18 +32,9 @@ const Heroes = () => {
 
     const dispatch = useDispatch()
 
-    const { getAllHeroes } = useService()
-
     useEffect(() => {
-        dispatch(heroesFetching())
-        heroesLoading()
+        dispatch(heroesFetch())
     }, [])
-
-    const heroesLoading = () => {
-        getAllHeroes()
-        .then(hero => dispatch(heroesFetched(hero)))
-        .catch(() => dispatch(heroesFetchingError))
-    }
 
     const renderHeroes = (array) => {
         if (array.length === 0) {

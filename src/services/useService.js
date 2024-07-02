@@ -1,22 +1,14 @@
-import useHttp from '../hooks/http.hook'
+import useHttp from './http'
 
 const useService = () => {
-    const _apiLinkHeroes = 'https://calm-torch-quality.glitch.me/heroes'
-    const _apiLinkFilters = 'https://calm-torch-quality.glitch.me/filters'
+    const _apiLinkHeroes = import.meta.env.VITE_LINK_HEROES
 
     const { request } = useHttp()
 
-    const getAllHeroes = () => request(_apiLinkHeroes)
-
-    const getAllFilters = () => request(_apiLinkFilters)
-
     const createHero = (hero) => request(_apiLinkHeroes, 'POST', hero)
-
     const deleteHero = (id) => request(`${_apiLinkHeroes}/${id}`, 'DELETE')
 
-    return { 
-        getAllHeroes,
-        getAllFilters,
+    return {
         createHero,
         deleteHero
     }

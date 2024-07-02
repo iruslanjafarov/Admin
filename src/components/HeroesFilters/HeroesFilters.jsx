@@ -5,13 +5,7 @@ import {
     useDispatch 
 } from 'react-redux'
 
-import { 
-    filtersFetching, 
-    filtersFetched,
-    filtersFetchingError
-} from '../../slices/filtersSlice'
-
-import useService from '../../services/useService'
+import { filtersFetch } from '../../slices/filtersSlice'
 
 import HeroesFilter from '../heroesFilter/heroesFilter'
 
@@ -23,18 +17,9 @@ const HeroesFilters = () => {
     
     const dispatch = useDispatch()
 
-    const { getAllFilters } = useService()
-
     useEffect(() => {
-        dispatch(filtersFetching())
-        filtersLoaded()
+        dispatch(filtersFetch())
     }, [])
-
-    const filtersLoaded = () => {
-        getAllFilters()
-            .then(filter => dispatch(filtersFetched(filter)))
-            .catch(error => dispatch(filtersFetchingError()))
-    }
 
     const fitlersRender = (array) => {
         const filters = array.map(({ label, element, color }, i) => {
