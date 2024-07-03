@@ -1,14 +1,8 @@
-import { useEffect } from 'react'
+import { useMemo } from 'react'
 
-import { 
-    useSelector,
-    useDispatch
-} from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { 
-    heroesFetch, 
-    filteredHeroesSelector 
-} from '../../slices/heroesSlice'
+import { useGetAllHeroesQuery } from '../../slices/apiSlice'
 
 import Hero from '../hero/hero'
 
@@ -16,15 +10,23 @@ import Spinner from '../spinner/spinner'
 import Error from '../error/error'
 
 const Heroes = () => {
-    const filteredHeroes = useSelector(filteredHeroesSelector)
+    const {
+        data: heroes = [],
+        isLoading,
+        isError
+    } = useGetAllHeroesQuery()
 
-    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus)
+    const filterActive = useSelector(state => state.filters.filterActive)
 
-    const dispatch = useDispatch()
+    const filteredHeroes = useMemo(() => {
+        const filteredHeroes = heroes.slice()
 
-    useEffect(() => {
-        dispatch(heroesFetch())
-    }, [])
+        if (filterActive === 'all') {
+            return filteredHeroes
+        }
+
+        return filteredHeroes.filter(hero => hero.element === filterActive)
+    }, [heroes, filterActive])
 
     const renderHeroes = (array) => {
         if (array.length === 0) {
@@ -50,11 +52,10 @@ const Heroes = () => {
         )
     }
 
-    switch (heroesLoadingStatus) {
-        case 'loading':
-            return <Spinner/>
-        case 'error':
-            return <Error/>
+    if (isLoading) {
+        return <Spinner/>
+    } else if (isError) {
+        return <Error/>
     }
 
     const items = renderHeroes(filteredHeroes)

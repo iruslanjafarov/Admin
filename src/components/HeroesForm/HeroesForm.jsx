@@ -1,21 +1,17 @@
 import { useState } from 'react'
 
-import { useDispatch } from 'react-redux'
-
-import { nanoid } from '@reduxjs/toolkit'
+import { useHeroCreateMutation } from '../../slices/apiSlice'
 
 import { useForm } from 'react-hook-form'
 
-import useService from '../../services/useService'
-
-import { heroCreate } from '../../slices/heroesSlice'
+import { nanoid } from '@reduxjs/toolkit'
 
 import HeroesFormSelect from '../heroesFormSelect/heroesFormSelect'
 
 const HeroesForm = () => {
     const [currentOption, setCurrentOption] = useState('')
 
-    const { createHero } = useService()
+    const [ heroCreate ] = useHeroCreateMutation()
 
     switch (currentOption) {
         case 'Огонь':
@@ -38,8 +34,6 @@ const HeroesForm = () => {
         setCurrentOption(option)
     }
 
-    const dispatch = useDispatch()
-
     const { 
         register,
         handleSubmit,
@@ -48,11 +42,9 @@ const HeroesForm = () => {
     } = useForm()
 
     const onHeroCreate = ({ name, description }) => {
-        const hero = {id: nanoid(), name: name, description: description, element: currentOption}
+        const hero = { id: nanoid(), name: name, description: description, element: currentOption }
 
-        dispatch(heroCreate(hero))
-
-        createHero(JSON.stringify(hero))
+        heroCreate(hero)
 
         reset()
     }

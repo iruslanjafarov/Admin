@@ -1,17 +1,11 @@
-import { useDispatch } from 'react-redux'
-
-import { heroDeleted } from '../../slices/heroesSlice'
-
-import useService from '../../services/useService'
+import { useHeroDeleteMutation } from '../../slices/apiSlice'
 
 import heroThumbnail from '../../assets/unknown.jpg'
 
 import Close from '../close/close'
 
 const Hero = ({ id, name, description, element }) => {
-    const dispatch = useDispatch()
-
-    const { deleteHero } = useService()
+    const [ heroDelete ] = useHeroDeleteMutation()
 
     let backgroundColor = ''
 
@@ -34,9 +28,7 @@ const Hero = ({ id, name, description, element }) => {
     }
 
     const onHeroDelete = (id) => {
-        dispatch(heroDeleted(id))
-
-        deleteHero(id)
+        heroDelete(id)
     }
 
     return (
