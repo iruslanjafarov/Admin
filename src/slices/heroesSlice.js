@@ -1,14 +1,15 @@
-import { 
+import {
+    createEntityAdapter,
+    createAsyncThunk,
     createSlice,
-    createAsyncThunk
+    createSelector
 } from '@reduxjs/toolkit'
 
 import http from '../services/http'
 
-const initialState = {
-    heroes: [],
-    heroesLoadingStatus: 'idle'
-}
+const heroesAdapter = createEntityAdapter()
+
+const initialState = heroesAdapter.getInitialState({ heroesLoadingStatus: 'idle' })
 
 const heroesFetch = createAsyncThunk(
     'heroes/heroesFetch',
@@ -24,20 +25,33 @@ const heroesSlice = createSlice({
     initialState: initialState,
     reducers: {
         heroCreate: (state, action) => {
-            state.heroes.push(action.payload)
+            heroesAdapter.addOne(state, action.payload)
         },
         heroDeleted: (state, action) => {
-            state.heroes = state.heroes.filter(hero => hero.id !== action.payload)
+            heroesAdapter.removeOne(state, action.payload)
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(heroesFetch.pending, (state) => { state.heroesLoadingStatus = 'loading' })
-            .addCase(heroesFetch.fulfilled, (state, action) => { state.heroes = action.payload, state.heroesLoadingStatus = 'idle' })
+            .addCase(heroesFetch.fulfilled, (state, action) => { heroesAdapter.setAll(state, action.payload), state.heroesLoadingStatus = 'idle' })
             .addCase(heroesFetch.rejected, (state) => { state.heroesLoadingStatus = 'error' })
             .addDefaultCase(() => {})
     }
 })
+
+const { selectAll } = heroesAdapter.getSelectors((state) => state.heroes)
+
+export const filteredHeroesSelector = createSelector(
+    [selectAll, (state) => state.filters.filterActive],
+    (heroes, activeFilter) => {
+        if (activeFilter === 'all') {
+            return heroes
+        }
+
+        return heroes.filter(hero => hero.element === activeFilter)
+    }
+)
 
 const { actions, reducer } = heroesSlice
 
@@ -47,5 +61,6 @@ export const {
 } = actions
 
 export { heroesFetch }
+
 
 export default reducer

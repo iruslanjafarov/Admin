@@ -5,14 +5,18 @@ import {
     useDispatch 
 } from 'react-redux'
 
-import { filtersFetch } from '../../slices/filtersSlice'
+import {
+    filtersFetch,
+    selectAll as allFilters
+} from '../../slices/filtersSlice'
 
 import HeroesFilter from '../heroesFilter/heroesFilter'
 
 import HeroesFiltersSkeleton from '../heroesFiltersSkeleton/heroesFiltersSkeleton'
 
 const HeroesFilters = () => {
-    const filters = useSelector(state => state.filters.filters)
+    const filters = useSelector(allFilters)
+
     const filtersLoadingStatus = useSelector(state => state.filters.filtersLoadingStatus)
     
     const dispatch = useDispatch()

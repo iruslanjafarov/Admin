@@ -1,7 +1,11 @@
 import { useSelector } from 'react-redux'
 
+import { 
+    selectAll as allFilters
+} from '../../slices/filtersSlice'
+
 const HeroesFormSelect = ({ getCurrentOption }) => {
-    const filters = useSelector(state => state.filters.filters)
+    const filters = useSelector(allFilters)
 
     const fitlersRender = (array) => {
         return array.map(({ label }, i) => {

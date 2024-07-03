@@ -1,31 +1,21 @@
 import { useEffect } from 'react'
 
-import { createSelector } from '@reduxjs/toolkit'
-
 import { 
     useSelector,
     useDispatch
 } from 'react-redux'
 
-import { heroesFetch } from '../../slices/heroesSlice'
-    
+import { 
+    heroesFetch, 
+    filteredHeroesSelector 
+} from '../../slices/heroesSlice'
+
 import Hero from '../hero/hero'
 
 import Spinner from '../spinner/spinner'
 import Error from '../error/error'
 
 const Heroes = () => {
-    const filteredHeroesSelector = createSelector(
-        [(state) => state.heroes.heroes, (state) => state.filters.filterActive],
-        (heroes, activeFilter) => {
-            if (activeFilter === 'all') {
-                return heroes
-            }
-
-            return heroes.filter(hero => hero.element === activeFilter)
-        }
-    )
-
     const filteredHeroes = useSelector(filteredHeroesSelector)
 
     const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus)
@@ -44,11 +34,11 @@ const Heroes = () => {
         const items = array.map(({ id, name, description, element }) => {
             return (
                 <Hero
-                key={id}
-                id={id}
-                name={name}
-                description={description}
-                element={element}
+                    key={id}
+                    id={id}
+                    name={name}
+                    description={description}
+                    element={element}
                 />
             )
         })
